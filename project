@@ -6,7 +6,7 @@
     <style media="screen">
 
     </style>
-    <script type="text/javascript">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
 
     </script>
   </head>
@@ -21,8 +21,9 @@
     position: absolute;
     border-radius: 50px;
     float: left;
-    width: 50px;">
-      <img src="C:\Project" >
+    width: 50px;
+    overflow: hidden">
+      <img src="images.jpg" style="width: 60px; height: auto;">
     </div>
     <div style="border: 1px solid blue;f
     float: left;
@@ -40,5 +41,6 @@
     top: 300px;
     background-color: red;
     position: absolute;"></div>
+
   </body>
 </html>
