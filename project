@@ -1,1 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Java Script 기말과제</title>
+    <style media="screen">
+      div {
+        border: 1px solid blue;
+        width: 100px;
+        height: 100px;
+        text-align: center;
+        vertical-align: middle;
+        line-height: 100px;
+        left: 300px; /* x축 좌표값 */
+        top: 300px; /* y축 좌표값 */
+        position: absolute;
+        border-radius: 50px;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div>Image</div>
+  </body>
+</html>
 
