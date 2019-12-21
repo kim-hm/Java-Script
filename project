@@ -3,15 +3,15 @@
   <head>
     <meta charset="utf-8">
     <title>Java Script 기말과제</title>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js">
+    </script>
     <style media="screen">
 
     </style>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
-
-    </script>
   </head>
   <body>
-    <div style="border: 1px solid gold;
+    <div style="border: 1px solid white;
     height: 50px;
     text-align: center;
     vertical-align: middle;
@@ -25,14 +25,18 @@
     overflow: hidden">
       <img src="images.jpg" style="width: 60px; height: auto;">
     </div>
-    <div style="border: 1px solid blue;f
+    <div style="border: 1px solid blue;
     float: left;
     width: 25px;
     height: 200px;
     left: 10px;
     top: 300px;
     background-color: blue;
-    position: absolute;"></div>
+    position: absolute;"
+    class="stage"
+    id="p2">
+  </div>
+
     <div style="border: 1px solid red;
     float: left;
     width: 25px;
@@ -40,7 +44,37 @@
     right: 10px;
     top: 300px;
     background-color: red;
-    position: absolute;"></div>
+    position: absolute;"
+      id="p3">
+      </div>
 
+
+      <script>
+      $(function(){
+      var keypress = {}, // 어떤 키가 눌려 있는지 저장
+      p2x = 10, p2y = 250,p3x = 1330, p3y = 250, speed = 3, $p2 = $('#p2'), $p3 = $('#p3');
+      setInterval(function(){ // 주기적으로 검사
+      if(keypress['87']) p2y -= speed; // up - w
+      if(keypress['83']) p2y += speed; // down - s
+      if(keypress['65']) p2x -= speed; // left - a
+      if(keypress['68']) p2x += speed; // right - d
+
+      if(keypress['38']) p3y -= speed; // up - w
+      if(keypress['40']) p3y += speed; // down - s
+      if(keypress['37']) p3x -= speed; // left - a
+      if(keypress['39']) p3x += speed; // right - d
+
+      $p2.css({top: p2y, left: p2x});
+      $p3.css({top: p3y, left: p3x});
+      }, 10); // 매 0.01 초마다 실행
+
+      $(document).keydown(function(e){ // 어떤 키가 눌렸는지 저장
+      keypress[e.which.toString()] = true;
+      });
+      $(document).keyup(function(e){ // 눌렸던 키를 해제
+      keypress[e.which.toString()] = false;
+      });
+      });
+      </script>
   </body>
 </html>
