@@ -22,9 +22,11 @@
     border-radius: 50px;
     float: left;
     width: 50px;
-    overflow: hidden">
+    overflow: hidden"
+    id="p1">
       <img src="images.jpg" style="width: 60px; height: auto;">
     </div>
+
     <div style="border: 1px solid blue;
     float: left;
     width: 25px;
@@ -50,6 +52,31 @@
 
 
       <script>
+      let moveAmount = 10;
+      let divLeft = 300;
+      let divTop = 300;
+      let keyDiv = null;
+      function moveTo(left,top){
+        p1.style.left = left + 'px';
+        p1.style.top = top + 'px';
+      }
+      function moveRight(){
+        //오른쪽 벽 충돌여부 확인
+        if((divLeft+100) >= window.innerWidth)
+        moveAmount = -10;    //이동방향을 반대로(왼쪽으로) 변경한다.
+        //왼쪽 벽 충돌여부 확인
+        if(divLeft <= 0)
+        moveAmount = 10;
+        divLeft += moveAmount;
+        moveTo(divLeft, divTop);
+      }
+      window.onload = function(){
+       moveTo(divLeft, divTop);
+       keyDiv = setInterval(moveRight, 50);
+       showWindowSize();
+        window.onresize = showWindowSize;
+     }
+      // div 키보드로 움직이기
       $(function(){
       var keypress = {}, // 어떤 키가 눌려 있는지 저장
       p2x = 10, p2y = 250,p3x = 1330, p3y = 250, speed = 3, $p2 = $('#p2'), $p3 = $('#p3');
@@ -59,10 +86,10 @@
       if(keypress['65']) p2x -= speed; // left - a
       if(keypress['68']) p2x += speed; // right - d
 
-      if(keypress['38']) p3y -= speed; // up - w
-      if(keypress['40']) p3y += speed; // down - s
-      if(keypress['37']) p3x -= speed; // left - a
-      if(keypress['39']) p3x += speed; // right - d
+      if(keypress['38']) p3y -= speed; // up - ↑
+      if(keypress['40']) p3y += speed; // down - ↓
+      if(keypress['37']) p3x -= speed; // left - ←
+      if(keypress['39']) p3x += speed; // right - →
 
       $p2.css({top: p2y, left: p2x});
       $p3.css({top: p3y, left: p3x});
@@ -75,6 +102,7 @@
       keypress[e.which.toString()] = false;
       });
       });
+      // -------------------------------------------------
       </script>
   </body>
 </html>
