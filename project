@@ -7,54 +7,54 @@
     <script src="https://code.jquery.com/jquery-3.2.1.min.js">
     </script>
     <style media="screen">
-
+      #p1 {
+        border: 1px solid white;
+        height: 50px;
+        text-align: center;
+        vertical-align: middle;
+        line-height: 100px;
+        left: 50%; /* x축 좌표값 */
+        top: 50%; /* y축 좌표값 */
+        position: absolute;
+        border-radius: 50px;
+        float: left;
+        width: 50px;
+        overflow: hidden;
+      }
+      #p2 {
+        border: 1px solid blue;
+        float: left;
+        width: 25px;
+        height: 200px;
+        left: 10px;
+        top: 300px;
+        background-color: blue;
+        position: absolute;
+      }
+      #p3 {
+        border: 1px solid red;
+        float: left;
+        width: 25px;
+        height: 200px;
+        right: 10px;
+        top: 300px;
+        background-color: red;
+        position: absolute;
+      }
     </style>
   </head>
   <body>
-    <div style="border: 1px solid white;
-    height: 50px;
-    text-align: center;
-    vertical-align: middle;
-    line-height: 100px;
-    left: 50%; /* x축 좌표값 */
-    top: 50%; /* y축 좌표값 */
-    position: absolute;
-    border-radius: 50px;
-    float: left;
-    width: 50px;
-    overflow: hidden"
-    id="p1">
+    <div id="p1">
       <img src="images.jpg" style="width: 60px; height: auto;">
     </div>
-
-    <div style="border: 1px solid blue;
-    float: left;
-    width: 25px;
-    height: 200px;
-    left: 10px;
-    top: 300px;
-    background-color: blue;
-    position: absolute;"
-    class="stage"
-    id="p2">
-  </div>
-
-    <div style="border: 1px solid red;
-    float: left;
-    width: 25px;
-    height: 200px;
-    right: 10px;
-    top: 300px;
-    background-color: red;
-    position: absolute;"
-      id="p3">
-      </div>
+    <div id="p2"></div>
+    <div id="p3"></div>
 
 
       <script>
       let moveAmount = 10;
-      let divLeft = 300;
-      let divTop = 300;
+      let p1Left = 600;
+      let p1Top = 300;
       let keyDiv = null;
       function moveTo(left,top){
         p1.style.left = left + 'px';
@@ -62,16 +62,26 @@
       }
       function moveRight(){
         //오른쪽 벽 충돌여부 확인
-        if((divLeft+100) >= window.innerWidth)
+        if((p1.left = p3.left  ) >= window.innerWidth)
         moveAmount = -10;    //이동방향을 반대로(왼쪽으로) 변경한다.
         //왼쪽 벽 충돌여부 확인
-        if(divLeft <= 0)
+        if(p1.left <= p2.left )
         moveAmount = 10;
-        divLeft += moveAmount;
-        moveTo(divLeft, divTop);
+        p1Left += moveAmount;
+        moveTo(p1Left, p1Top);
+      }
+      function moveDown(){
+        //오른쪽 벽 충돌여부 확인
+        if((divTop <= 0) >= window.innerWidth)
+        moveAmount = -10;    //이동방향을 반대로(왼쪽으로) 변경한다.
+        //왼쪽 벽 충돌여부 확인
+        if(divTop + 80)
+        moveAmount = 10;
+        divTop += moveAmount;
+        moveTo(p1Left, divTop);
       }
       window.onload = function(){
-       moveTo(divLeft, divTop);
+       moveTo(p1Left, divTop);
        keyDiv = setInterval(moveRight, 50);
        showWindowSize();
         window.onresize = showWindowSize;
