@@ -26,8 +26,6 @@
         float: left;
         width: 25px;
         height: 200px;
-        left: 10px;
-        top: 300px;
         background-color: blue;
         position: absolute;
       }
@@ -36,8 +34,6 @@
         float: left;
         width: 25px;
         height: 200px;
-        right: 10px;
-        top: 300px;
         background-color: red;
         position: absolute;
       }
@@ -53,12 +49,15 @@
 
       <script>
       let moveAmount = 10;
-      let p1Left = 600;
-      let p1Top = 300;
+      let p1Left = 600; let p1Top = 300;
+      let p2Left = 10; let p2Top = 250;
+      let p3Left = 1330; let p3Top = 250;
       let keyDiv = null;
-      function moveTo(left,top){
-        p1.style.left = left + 'px';
-        p1.style.top = top + 'px';
+      let p1Angle = 1; // 공 각도
+      let p1position = -1; // -1 : 왼쪽, 1 : 오른쪽
+      function moveTo(p1left,p1top){
+        p1.style.left = p1left + 'px';
+        p1.style.top = p1top + 'px';
       }
       function moveRight(){
         //오른쪽 벽 충돌여부 확인
@@ -72,12 +71,21 @@
       }
       function moveDown(){
         //오른쪽 벽 충돌여부 확인
-        if((divTop <= 0) >= window.innerWidth)
+        if((p1Top <= 0) >= window.innerWidth)
         moveAmount = -10;    //이동방향을 반대로(왼쪽으로) 변경한다.
         //왼쪽 벽 충돌여부 확인
-        if(divTop + 80)
+        if(p1Top + 80)
         moveAmount = 10;
-        divTop += moveAmount;
+        p1Top += moveAmount;
+        moveTo(p1Left, p1Top);
+      }
+      function moveCrash(){
+        if((p2Left + 20) >= window.innerWidth)
+        moveAmount = -10;
+        if((p3Left + 20) >= window.innerWidth)
+        moveAmount = -10;
+        p2Top += moveAmount;
+        p3Top += moveAmount;
         moveTo(p1Left, p1Top);
       }
       window.onload = function(){
