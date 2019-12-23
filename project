@@ -62,10 +62,10 @@
       }
       function moveRight(){
         //오른쪽 벽 충돌여부 확인
-        if((p1.left = p3.left  ) >= window.innerWidth)
+        if((p1Left + 80) >= window.innerWidth)
         moveAmount = -10;    //이동방향을 반대로(왼쪽으로) 변경한다.
         //왼쪽 벽 충돌여부 확인
-        if(p1.left <= p2.left )
+        if(p1Left <= 0 )
         moveAmount = 10;
         p1Left += moveAmount;
         moveTo(p1Left, p1Top);
@@ -78,10 +78,10 @@
         if(divTop + 80)
         moveAmount = 10;
         divTop += moveAmount;
-        moveTo(p1Left, divTop);
+        moveTo(p1Left, p1Top);
       }
       window.onload = function(){
-       moveTo(p1Left, divTop);
+       moveTo(p1Left, p1Top);
        keyDiv = setInterval(moveRight, 50);
        showWindowSize();
         window.onresize = showWindowSize;
@@ -116,3 +116,15 @@
       </script>
   </body>
 </html>
+© 2019 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Help
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
